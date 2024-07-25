@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const treeContainer = document.querySelector('.tree');
 
+    
     const nodesData = [
         { type: 'node', children: [
             { type: 'button', class: 'topic-button', dataNumber: 'Entschuldigung', text: 'Entschuldigung' }
