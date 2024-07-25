@@ -1,11 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Dict7.20240713</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .tree {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .node {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+        .toggle-button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .topic-button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .topic-button-zero {
+            padding: 5px 10px;
+            background-color: lightblue;
+            color: #FEF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .topic-button-sub {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #FEF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .topic-button-sub2 {
+            padding: 5px 10px;
+            background-color: #006400;
+            color: #FEF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .topic-button-sub3 {
+            padding: 5px 10px;
+            background-color: #DC143C;
+            color: #FEF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .sub-node {
+            display: none;
+            flex-direction: column;
+            margin-left: 30px;
+        }
+        .sub-node.show {
+            display: flex;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <div class="tree"></div>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tree = document.querySelector('.tree');
+
+            tree.addEventListener('click', function(event) {
+                const target = event.target;
+                
+                if (target.classList.contains('toggle-button')) {
+                    const node = target.closest('.node');
+                    const subNode = node.nextElementSibling;
+
+                    if (subNode && subNode.classList.contains('sub-node')) {
+                        if (target.textContent === '+') {
+                            target.textContent = '-';
+                            subNode.classList.add('show');
+                        } else {
+                            target.textContent = '+';
+                            subNode.classList.remove('show');
+                        }
+
+                        let sibling = node.nextElementSibling;
+                        while (sibling && !sibling.classList.contains('node')) {
+                            sibling.style.display = target.textContent === '-' ? 'flex' : 'none';
+                            sibling = sibling.nextElementSibling;
+                        }
+                    }
+                }
+
+                if (target.classList.contains('topic-button') || target.classList.contains('topic-button-sub')) {
+                    var number = target.getAttribute('data-number');
+                    if (number) {
+                        window.location.href = 'list.html?number=' + number;
+                    }
+                }
+
+                if (target.classList.contains('topic-button-sub2')) {
+                    var number = target.getAttribute('data-number');
+                    if (number) {
+                        window.location.href = 'text.html?number=' + number;
+                    }
+                }
+
+                if (target.classList.contains('topic-button-sub3')) {
+                    var number = target.getAttribute('data-number');
+                    if (number) {
+                        window.location.href = 'test.html?number=' + number;
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
